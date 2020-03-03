@@ -8,12 +8,12 @@ npm i nodejs-formaction-sdk-rasa
 ###Usage:
 ```javascript
 const {handleFormAction} = require('nodejs-formaction-sdk-rasa');
-handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>);
+handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>, <senderID_OPTIONAL>);
 ```
 ####OR
 ```javascript
 const formAction = require('nodejs-formaction-sdk-rasa');
-formAction.handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>);
+formAction.handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>, <senderID_OPTIONAL>);
 ```
 
 ###Example:
@@ -26,7 +26,8 @@ const entites = request.tracker.latest_message.entities;
 const slots = request.tracker.slots;
 const templates = request.domain.templates;
 const nextAction = 'utter_flight_details';
-
+const senderID = request.sender_id;
+//SenderID is used to send out random unrepeating utterance if multiple utterance available. Optional feature to enhance user experience 
 
 const formHandle = handleFormAction(required_slot, entities, slots, templates, nextAction);
 formHandle.then(resp=>{
