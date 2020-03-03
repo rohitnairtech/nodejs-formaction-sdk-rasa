@@ -5,12 +5,16 @@
 ```
 npm i nodejs-formaction-sdk-rasa
 ```
+#####OR
+```
+npm i https://github.com/rohitnairtech/nodejs-formaction-sdk-rasa/tarball/master
+```
 ###Usage:
 ```javascript
 const {handleFormAction} = require('nodejs-formaction-sdk-rasa');
 handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>, <senderID_OPTIONAL>);
 ```
-####OR
+#####OR
 ```javascript
 const formAction = require('nodejs-formaction-sdk-rasa');
 formAction.handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>, <senderID_OPTIONAL>);
@@ -29,7 +33,7 @@ const nextAction = 'utter_flight_details';
 const senderID = request.sender_id;
 //SenderID is used to send out random unrepeating utterance if multiple utterance available. Optional feature to enhance user experience 
 
-const formHandle = handleFormAction(required_slot, entities, slots, templates, nextAction);
+const formHandle = handleFormAction(required_slot, entities, slots, templates, nextAction, senderID);
 formHandle.then(resp=>{
 	console.log(resp);
 	//send the response back to rasa python agent

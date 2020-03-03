@@ -1,10 +1,14 @@
 {
   "name": "nodejs-formaction-sdk-rasa",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "FormAction SDK for nodejs to handle forms in rasa",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohitnairtech/nodejs-formaction-sdk-rasa.git"
   },
   "keywords": [
     "rasa-sdk",
