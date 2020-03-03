@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-formaction-sdk-rasa",
+  "version": "1.0.2",
+  "description": "FormAction SDK for nodejs to handle forms in rasa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rasa-sdk",
+    "formaction-sdk",
+    "nodejs-rasa-sdk",
+    "rasa-sdk-js",
+    "formaction-sdk-rasa",
+    "nodejs-formaction-sdk-rasa"
+  ],
+  "author": "Rohit Nair",
+  "license": "ISC"
+}
