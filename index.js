@@ -41,6 +41,9 @@ const nextUtter = 'utter_ask_', respData = JSON.parse(JSON.stringify(response));
                                lastResp[senderId] = {};
                                lastResp[senderId][nextSlotName] = '';
                             }
+                            else if(!(nextSlotName in lastResp[senderId])){
+                            	lastResp[senderId][nextSlotName] = '';
+                            }
                             const last = lastResp[senderId][nextSlotName];
                             const nextReply = templates[nextSlotName].randomDiffResp(last).text;
                             respData.responses[0].text = nextReply;
