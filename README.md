@@ -42,6 +42,29 @@ formHandle.then(resp=>{
 });
 ```
 
+###Example 2:
+```javascript
+
+app.post('/actionsName', (req, res) => {
+    const request = req.body, next_action = request.next_action, entities = request.tracker.latest_message.entities, slots = request.tracker.slots, sender = request.sender_id;
+    
+    let formAction;
+
+    switch(next_action){
+        case 'form_name':
+            formAction = handleFormAction(['origin', 'destination', 'flight_class', 'num_people', 'date'], entities, slots, 'action_flight_details', sender);
+            formAction.then(resp=>{
+                res.json(resp);
+            }).catch(err=>{
+                console.log(err);
+            });
+            break;
+    }
+
+});
+
+```
+
 NOTES:
 - TURN OFF AUTOFILL for SLOTS in domain, but use the same name as the ENTITIES for SLOTS - SlotFilling happens in the module
 - Register utter_ask_<SLOT_NAME> this is used to dynamically utter a question back to the user.
