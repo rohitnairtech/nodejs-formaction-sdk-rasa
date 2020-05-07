@@ -44,8 +44,15 @@ formHandle.then(resp=>{
 
 ###Example 2:
 ```javascript
+"use strict";
 
-app.post('/actionsName', (req, res) => {
+const express = require('express');
+const app = express();
+const port = 3001;
+
+app.use(express.json({limit: '5mb'}));
+
+app.post('/actionWebhook', (req, res) => {
     const request = req.body, next_action = request.next_action, entities = request.tracker.latest_message.entities, slots = request.tracker.slots, sender = request.sender_id;
     
     let formAction;
@@ -62,6 +69,8 @@ app.post('/actionsName', (req, res) => {
     }
 
 });
+
+app.listen(port, () => console.log(`Actions server listening on port ${port}`));
 
 ```
 
