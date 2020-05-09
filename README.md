@@ -1,26 +1,27 @@
-#FormAction SDK for Rasa
+# FormAction SDK for Rasa
 
-
-###Installation :
+## Installation
 ```
 npm i nodejs-formaction-sdk-rasa
 ```
-#####OR
+### OR
 ```
 npm i https://github.com/rohitnairtech/nodejs-formaction-sdk-rasa/tarball/master
 ```
-###Usage:
+## Usage
+
 ```javascript
 const {handleFormAction} = require('nodejs-formaction-sdk-rasa');
 handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>, <senderID_OPTIONAL>);
 ```
-#####OR
+### OR
+
 ```javascript
 const formAction = require('nodejs-formaction-sdk-rasa');
 formAction.handleFormAction(<REQUIRED_SLOTS_ARRAY>, <ENTITIES_ARRAY>, <SLOT_ARRAY>, <TEMPLATE_ARRAY>, <NEXT_ACTION_NAME>, <senderID_OPTIONAL>);
 ```
 
-###Example:
+## FormAction example
 ```javascript
 const {handleFormAction} = require('nodejs-formaction-sdk-rasa');
 
@@ -42,9 +43,12 @@ formHandle.then(resp=>{
 });
 ```
 
-###Example 2:
+## FormAction example, using expressjs as webserver
+
 ```javascript
 "use strict";
+
+const {handleFormAction} = require('nodejs-formaction-sdk-rasa');
 
 const express = require('express');
 const app = express();
@@ -53,13 +57,20 @@ const port = 3001;
 app.use(express.json({limit: '5mb'}));
 
 app.post('/actionWebhook', (req, res) => {
-    const request = req.body, next_action = request.next_action, entities = request.tracker.latest_message.entities, slots = request.tracker.slots, sender = request.sender_id;
-    
+
+    const request = req.body;
+    const next_action = request.next_action;
+    const entities = request.tracker.latest_message.entities;
+    const slots = request.tracker.slots;
+    const sender = request.sender_id;
+    const required_slots = ['origin', 'destination', 'flight_class', 'num_people', 'date'];
+    const nextAction = 'utter_flight_details';
+
     let formAction;
 
     switch(next_action){
         case 'form_name':
-            formAction = handleFormAction(['origin', 'destination', 'flight_class', 'num_people', 'date'], entities, slots, 'action_flight_details', sender);
+            formAction = handleFormAction(required_slots, entities, slots, nextAction, sender);
             formAction.then(resp=>{
                 res.json(resp);
             }).catch(err=>{
@@ -74,7 +85,8 @@ app.listen(port, () => console.log(`Actions server listening on port ${port}`));
 
 ```
 
-NOTES:
+## Notes
+
 - TURN OFF AUTOFILL for SLOTS in domain, but use the same name as the ENTITIES for SLOTS - SlotFilling happens in the module
 - Register utter_ask_<SLOT_NAME> this is used to dynamically utter a question back to the user.
 - Register nextAction name - utterance/custom action name in domain. That action will called upon successfully completing slot filling.
