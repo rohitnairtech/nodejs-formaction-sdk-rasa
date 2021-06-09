@@ -1,3 +1,9 @@
+![npm](https://img.shields.io/npm/v/nodejs-formaction-sdk-rasa?style=for-the-badge)
+![npm](https://img.shields.io/npm/dt/nodejs-formaction-sdk-rasa?style=for-the-badge)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/nodejs-formaction-sdk-rasa?style=for-the-badge)
+![NPM](https://img.shields.io/npm/l/nodejs-formaction-sdk-rasa?style=for-the-badge)
+
+
 # FormAction SDK for Rasa
 
 ## Installation
